@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th [class.active]="prop === 'id'" (click)="sort('id')">ID 
+                         <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span></th>
+                    <th  [class.active]="prop === 'name'"
+                    (click)="sort('name')">Name </th>
+                    <th  [class.active]="prop === 'email'"
+                    (click)="sort('email')">Email</th>
+                    <th  [class.active]="prop === 'phone'"
+                    (click)="sort('phone')">Phone </th>
+                        <th  [class.active]="prop === 'website'"
+                        (click)="sort('website')">Website </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of data | paginate: { itemsPerPage: 5, currentPage: page } | orderBy:order: prop">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.website}}</td>
+                  </tr>
+                  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                </tbody>
+              </table>
+        </div>
+     
+    </div>
+</div>
